@@ -33,7 +33,7 @@ def pie_base() -> Pie:
     c = (
         Pie()
             .add("", [list(z) for z in zip(Faker.choose(), Faker.values())])
-            .set_global_opts(title_opts=opts.TitleOpts(title="Pie-鍩烘湰绀轰緥"))
+            .set_global_opts(title_opts=opts.TitleOpts(title="Pie-基本示例"))
             .set_series_opts(label_opts=opts.LabelOpts(formatter="{b}: {c}"))
     )
     return c
@@ -52,7 +52,7 @@ def bar3d_base() -> Bar3D:
         )
             .set_global_opts(
             visualmap_opts=opts.VisualMapOpts(max_=20),
-            title_opts=opts.TitleOpts(title="Bar3D-鍩烘湰绀轰緥"),
+            title_opts=opts.TitleOpts(title="Bar3D-基本示例"),
         )
     )
     return c
