@@ -11,7 +11,6 @@ def pass_rate_bar(date, data, title):
             xaxis_opts=opts.AxisOpts(axislabel_opts=opts.LabelOpts(rotate=-30)),
             title_opts=opts.TitleOpts(title=title)
         ).add_yaxis(date, list(data.values))
-
     )
 
     return c
