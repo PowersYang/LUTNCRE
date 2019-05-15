@@ -7,6 +7,7 @@ import pandas as pd
 class Clean():
     def __init__(self, date):
         self.date = date
+
         self.df = pd.read_excel('data/{}bb.xlsx'.format(self.date))
         self.df.columns = [col.lower() for col in self.df]
 
@@ -21,6 +22,7 @@ class Clean():
         self.students_list.columns = [col.lower() for col in self.students_list]
 
         self.df = pd.merge(self.students_lib, self.df, left_on='sfzh', right_on='zjh')
+        self.df = pd.merge(self.df, self.students_list, left_on='sfzh', right_on='身份证号')
 
     def save2csv(self):
         filename = 'data/{}.csv'.format(self.date)

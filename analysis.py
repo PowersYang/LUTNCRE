@@ -8,15 +8,19 @@ class Analysis():
         self.date = date
         self.df = pd.read_csv('data/{}.csv'.format(self.date))
 
-    def pass_rate(self, compute_by):
+    def pass_rate(self, compute_by=None):
 
         if compute_by == 'college':
             res = self.df[self.df['cj'] >= 60].groupby('fy').count()['cj'] / \
                   self.df.groupby('fy').count()['cj']
+            res = res.dropna()
+
             return res.round(3)
         elif compute_by == 'major':
-            res = self.df[self.df['cj'] >= 60].groupby('专业名称').count()['cj'] / \
-                  self.df.groupby('专业名称').count()['cj']
+            res = self.df[self.df['cj'] >= 60].groupby('专业名称_x').count()['cj'] / \
+                  self.df.groupby('专业名称_x').count()['cj']
+            res = res.dropna()
+
             return res.round(3)
         elif compute_by == 'subject':
             self.df['subject'] = self.df['zkzh'].map(lambda x: str(x)[0:2])
@@ -28,7 +32,16 @@ class Analysis():
                             '29': 'c', '35': 'd', '36': 'e', '38': 'f', '39': 'g', '41': 'h', '42': 'i', '44': 'g',
                             '45': 'k', '61': 'l', '63': 'm', '64': 'n', '65': 'o'}
             subject.rename(subject_dict, inplace=True)
+            subject = subject.dropna()
 
             return subject.round(3)
+        elif compute_by == 'jg':
+            res = self.df[self.df['cj'] >= 60].groupby('籍贯').count()['cj'] / \
+                  self.df.groupby('籍贯').count()['cj']
+            res = res.dropna()
+
+            return res.round(3)
         else:
-            raise Exception('参数不合法')
+            res = self.df[self.df['cj'] >= 60]['sfzh'].count() / self.df['sfzh'].count()
+
+            return round(res, 3) * 100
