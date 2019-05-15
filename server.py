@@ -1,10 +1,9 @@
-import random
+# -*- coding:utf-8 -*-
 
 from flask import Flask, render_template
-from example.commons import Faker
-from pyecharts import options as opts
 
-from pyecharts.charts import Bar, Pie, Page, Bar3D
+from analysis import Analysis
+from charts import pass_rate_bar
 
 app = Flask(__name__)
 
@@ -16,47 +15,14 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/2018')
-def hello():
-    bar1 = pie_base()
-    bar2 = bar3d_base()
+@app.route('/charts/<date>')
+def render_charts(date):
+    analysis = Analysis(date)
+    c1 = pass_rate_bar(date, analysis.pass_rate('college'), 'å„å­¦é™¢é€šè¿‡çŽ‡')
+    c2 = pass_rate_bar(date, analysis.pass_rate('major'), 'å„ä¸“ä¸šé€šè¿‡çŽ‡')
 
-    return render_template('pyecharts.html', bar1=bar1.render_embed(), bar2=bar2.render_embed())
-
-
-@app.route('/2019')
-def hello2():
-    return '2019'
-
-
-def pie_base() -> Pie:
-    c = (
-        Pie()
-            .add("", [list(z) for z in zip(Faker.choose(), Faker.values())])
-            .set_global_opts(title_opts=opts.TitleOpts(title="Pie-»ù±¾Ê¾Àý"))
-            .set_series_opts(label_opts=opts.LabelOpts(formatter="{b}: {c}"))
-    )
-    return c
-
-
-def bar3d_base() -> Bar3D:
-    data = [(i, j, random.randint(0, 12)) for i in range(6) for j in range(24)]
-    c = (
-        Bar3D()
-            .add(
-            "",
-            [[d[1], d[0], d[2]] for d in data],
-            xaxis3d_opts=opts.Axis3DOpts(Faker.clock, type_="category"),
-            yaxis3d_opts=opts.Axis3DOpts(Faker.week_en, type_="category"),
-            zaxis3d_opts=opts.Axis3DOpts(type_="value"),
-        )
-            .set_global_opts(
-            visualmap_opts=opts.VisualMapOpts(max_=20),
-            title_opts=opts.TitleOpts(title="Bar3D-»ù±¾Ê¾Àý"),
-        )
-    )
-    return c
+    return render_template('pyecharts.html', c1=c1.render_embed(), c2=c2.render_embed())
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
