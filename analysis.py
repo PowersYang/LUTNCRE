@@ -26,7 +26,7 @@ class Analysis():
             self.df['subject'] = self.df['zkzh'].map(lambda x: str(x)[0:2])
 
             subject = self.df[self.df['cj'] >= 60].groupby('subject').count()['cj'] / \
-                  self.df.groupby('subject').count()['cj']
+                      self.df.groupby('subject').count()['cj']
 
             subject_dict = {'14': '二级C语言', '15': '二级JAva', '16': '三级网络技术', '24': '一级Office', '26': 'a', '28': 'b',
                             '29': 'c', '35': 'd', '36': 'e', '38': 'f', '39': 'g', '41': 'h', '42': 'i', '44': 'g',
@@ -45,3 +45,13 @@ class Analysis():
             res = self.df[self.df['cj'] >= 60]['sfzh'].count() / self.df['sfzh'].count()
 
             return round(res, 3) * 100
+
+    def pass_rate_fd(self):
+        lt60 = self.df[self.df['cj'] < 60]['cj'].count()
+        gt60 = self.df[self.df['cj'] < 90]['cj'].count() - lt60
+        gt90 = self.df[self.df['cj'] >= 90]['cj'].count()
+
+        data = [lt60, gt60, gt90]
+        index = ['不及格', '合格', '优秀']
+
+        return pd.Series(data, index=index)
