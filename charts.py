@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-from example.commons import Faker
 
 from pyecharts.charts import Bar, Gauge
 from pyecharts.charts import Geo
 from pyecharts import options as opts
-from pyecharts.globals import ChartType, ThemeType
+from pyecharts.globals import ChartType
 
 
 def pass_rate_bar(date, data, title):
@@ -18,8 +17,6 @@ def pass_rate_bar(date, data, title):
     )
 
     return c
-
-
 
 
 def geo_effectscatter(data, title) -> Geo:
