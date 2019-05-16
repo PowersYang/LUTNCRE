@@ -7,9 +7,6 @@ from charts import pass_rate_bar, geo_effectscatter, gaugegauge_base_color
 
 app = Flask(__name__)
 
-REMOTE_HOST = "https://pyecharts.github.io/assets/js"
-
-
 @app.route('/')
 def index():
     return render_template('index.html')
