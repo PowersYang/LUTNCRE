@@ -305,7 +305,7 @@
 }
 
 .data_content .data_main .main_right div:nth-child(1) {
-    margin-bottom: 50px;
+    margin-bottom: 0px;
 }
 
 .data_content .data_main .main_right div .main_title {
@@ -332,13 +332,8 @@
 }
 
 .data_content .data_bottom {
-    width: calc(100% - 40px);
-    height: 280px;
+    height: 400px;
     margin-left: 20px;
-}
-
-.data_content .data_bottom div {
-
 }
 
 .data_content .data_bottom .bottom_1 {

@@ -22,17 +22,6 @@
         #chart_map {
             cursor: pointer;
         }
-
-        .t_show {
-            position: absolute;
-            top: 0;
-            right: 0;
-            border-radius: 2px;
-            background: #2C58A6;
-            padding: 2px 5px;
-            color: #fff;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
@@ -106,7 +95,7 @@
                     <img src="../static/img/t_1.png" alt="">
                     人数占比
                 </div>
-                <div id="chart_2" class="chart t_btn9" style="width:100%;height: 280px;">{{ c4|safe }}</div>
+                <div id="chart_2" class="chart t_btn9" style="width:100%;height: 100%;">{{ c4|safe }}</div>
             </div>
         </div>
         <div class="main_center fl">
@@ -164,7 +153,7 @@
                     <img src="../static/img/t_4.png" alt="">
                     各科目通过率
                 </div>
-                <div id="chart_3" class="echart t_btn7" style="width:100%;height: 280px;">{{ c3|safe }}</div>
+                <div id="chart_3" class="echart t_btn7" style="width:100%;height: 100%;margin-left: 20px;">{{ c3|safe }}</div>
             </div>
         </div>
     </div>
@@ -194,7 +183,7 @@
                 <img src="../static/img/t_7.png" alt="">
                 各省通过率
             </div>
-            <div id="chart_5" class="echart fl" style="width:100%;height: 250px;margin-top: 15px;">{{ c1|safe }}</div>
+            <div id="chart_5" class="echart fl" style="width:100%;height: 100%;">{{ c1|safe }}</div>
         </div>
         <div class="bottom_2 fl">
             <!--左上边框-->
@@ -221,7 +210,7 @@
                 <img src="../static/img/t_7.png" alt="">
                 各专业通过率
             </div>
-            {{ c2|safe }}
+            <div id="chart_6" class="echart fr" style="width:100%;height: 100%;">{{ c2|safe }}</div>
         </div>
     </div>
 </div>
