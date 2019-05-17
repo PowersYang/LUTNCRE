@@ -37,7 +37,7 @@ def geo_effectscatter(data, width, height) -> Geo:
     c = (
         Geo(init_opts=opts.InitOpts(width="{}px".format(width), height="{}px".format(height)))
             .add_schema(maptype="china", is_roam=False,
-                        itemstyle_opts=opts.ItemStyleOpts(color='#0f1c2f', border_color="#5399b4", border_color0='red'))
+                        itemstyle_opts=opts.ItemStyleOpts(color='#0f1c2f', border_color="#ace3f0", border_color0='red'))
             .add("各省通过率",
                  [list(z) for z in zip(data.index, data.values)],
                  type_=ChartType.EFFECT_SCATTER,
