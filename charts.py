@@ -34,12 +34,14 @@ def pass_rate_bar(date=None, data=None, width=None, height=None, reverse=False, 
 
 
 def geo_effectscatter(data, width, height) -> Geo:
+    data = [list(z) for z in zip(data.index, data.values)]
+
     c = (
         Geo(init_opts=opts.InitOpts(width="{}px".format(width), height="{}px".format(height)))
             .add_schema(maptype="china", is_roam=False,
                         itemstyle_opts=opts.ItemStyleOpts(color='#0f1c2f', border_color="#ace3f0", border_color0='red'))
             .add("各省通过率",
-                 [list(z) for z in zip(data.index, data.values)],
+                 data,
                  type_=ChartType.EFFECT_SCATTER,
                  effect_opts=opts.EffectOpts(scale=1000), color="#d0f551")
             .set_series_opts(label_opts=opts.LabelOpts(is_show=False))

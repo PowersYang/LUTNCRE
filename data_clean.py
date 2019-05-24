@@ -20,6 +20,7 @@ class Clean():
 
         self.students_list = pd.read_excel('data/在籍在校学生名单.xls')
         self.students_list.columns = [col.lower() for col in self.students_list]
+        self.students_list = self.students_list[~self.students_list['籍贯'].isin(['土库曼斯坦', '塔吉克斯坦', '美国'])]
 
         self.df = pd.merge(self.students_lib, self.df, left_on='sfzh', right_on='zjh')
         self.df = pd.merge(self.df, self.students_list, left_on='sfzh', right_on='身份证号')
@@ -31,5 +32,8 @@ class Clean():
 
 c1 = Clean(201803)
 c2 = Clean(201809)
+c3 = Clean(201709)
+
 c1.save2csv()
 c2.save2csv()
+c3.save2csv()

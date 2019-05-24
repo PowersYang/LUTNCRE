@@ -5,9 +5,60 @@
     <title>Title</title>
 </head>
 <body>
-<div>
-    <a href="charts/201809">201809年成绩</a>
-    <a href="charts/201803">201803年成绩</a>
+<style>
+    body {
+        background: linear-gradient(#e8f9bb, #cefbbb);
+    }
+
+    a {
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: #5f6c6f;
+    }
+
+    .main {
+        width: 50%;
+        height: 50%;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    {#border: 1px solid red;#}
+    }
+
+    .button {
+        width: 162px;
+        height: 52px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 20px;
+        position: center;
+        text-align: center;
+        line-height: 50px;
+        border-radius: 50px;
+        background-color: #42b983;
+    }
+
+    .button:hover {
+        background-color: #83c391;
+    }
+
+    h1 {
+        margin: 0 auto 50px auto;
+        text-align: center;
+        color: #34495e;
+    }
+</style>
+<div class="main">
+    <h1>兰州理工大学NCRE可视化系统</h1>
+    <p class="button"><a href="charts/201809">2018年9月成绩</a></p>
+    <p class="button"><a href="charts/201803">2018年3月成绩</a></p>
+    <p class="button"><a href="charts/201709">2017年9月成绩</a></p>
 </div>
 </body>
 </html>
