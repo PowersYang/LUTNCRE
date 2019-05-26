@@ -19,16 +19,19 @@ def pass_rate_bar(date=None, data=None, width=None, height=None, reverse=False, 
                              yaxis_opts=opts.AxisOpts(axislabel_opts=opts.LabelOpts(rotate=yrorate, color="#ffffff"),
                                                       axisline_opts=opts.AxisLineOpts(
                                                           linestyle_opts=opts.LineStyleOpts(color="#ffffff"))),
-                             legend_opts=opts.LegendOpts(is_show=False))
+                             legend_opts=opts.LegendOpts(is_show=False),
+                             toolbox_opts=opts.ToolboxOpts(pos_left='right'))
             .set_series_opts(label_opts=opts.LabelOpts(is_show=False))
     )
 
     if reverse:
-        c.reversal_axis()
+        c.reversal_axis().set_global_opts(toolbox_opts=opts.ToolboxOpts(orient='vertical', pos_left='right'), 
+            legend_opts=opts.LegendOpts(is_show=False),)
+        
 
     if datazoom:
         c.set_global_opts(datazoom_opts=[opts.DataZoomOpts(type_='inside'), opts.DataZoomOpts()],
-                          legend_opts=opts.LegendOpts(is_show=False))
+                          legend_opts=opts.LegendOpts(is_show=False),toolbox_opts=opts.ToolboxOpts(pos_left='right'))
 
     return c
 
@@ -45,7 +48,7 @@ def geo_effectscatter(data, width, height) -> Geo:
                  type_=ChartType.EFFECT_SCATTER,
                  effect_opts=opts.EffectOpts(scale=1000), color="#d0f551")
             .set_series_opts(label_opts=opts.LabelOpts(is_show=False))
-            .set_global_opts(legend_opts=opts.LegendOpts(is_show=False))
+            .set_global_opts(legend_opts=opts.LegendOpts(is_show=False),toolbox_opts=opts.ToolboxOpts(pos_left='70%'))
     )
     return c
 
@@ -55,7 +58,7 @@ def gaugegauge_base_color(data, width, height) -> Gauge:
         Gauge(init_opts=opts.InitOpts(width="{}px".format(width), height="{}px".format(height)), )
             .add(
             "整体通过率",
-            [("通过率", data)],
+            [("", data)],
             axisline_opts=opts.AxisLineOpts(
                 linestyle_opts=opts.LineStyleOpts(
                     color=[(0.3, "#fd666d"), (0.7, "#37a2da"), (1, "#67e0e3")], width=30
@@ -63,7 +66,7 @@ def gaugegauge_base_color(data, width, height) -> Gauge:
             ),
         )
             .set_global_opts(legend_opts=opts.LegendOpts(is_show=False),
-                             )
+                             toolbox_opts=opts.ToolboxOpts(orient='vertical', pos_left='right'))
     )
     return c
 
@@ -78,7 +81,7 @@ def pie_rich_label(data, width, height) -> Pie:
 
         )
             .set_series_opts(label_opts=opts.LabelOpts(formatter="{b}: {c}"))
-            .set_global_opts(legend_opts=opts.LegendOpts(is_show=False))
+            .set_global_opts(legend_opts=opts.LegendOpts(is_show=False),toolbox_opts=opts.ToolboxOpts(orient='vertical', pos_left='right'))
 
     )
     return c
