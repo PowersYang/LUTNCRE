@@ -2,7 +2,7 @@
 from pyecharts.charts import Bar, Gauge, Pie
 from pyecharts.charts import Geo
 from pyecharts import options as opts
-from pyecharts.globals import ChartType, ThemeType
+from pyecharts.globals import ChartType
 
 
 def pass_rate_bar(date=None, data=None, width=None, height=None, reverse=False, xrotate=None, yrorate=None,
@@ -31,7 +31,9 @@ def pass_rate_bar(date=None, data=None, width=None, height=None, reverse=False, 
                                               axislabel_opts=opts.LabelOpts(font_size=6, rotate=yrorate,
                                                                             color="#ffffff"),
                                               axisline_opts=opts.AxisLineOpts(
-                                                  linestyle_opts=opts.LineStyleOpts(color="#ffffff"))))
+                                                  linestyle_opts=opts.LineStyleOpts(color="#ffffff"))))\
+            .set_global_opts(datazoom_opts=[opts.DataZoomOpts(type_='slider', orient='vertical', pos_left='left')],
+                        legend_opts=opts.LegendOpts(is_show=False), toolbox_opts=opts.ToolboxOpts(pos_left='right'))
 
     if datazoom:
         c.set_global_opts(datazoom_opts=[opts.DataZoomOpts(type_='inside'), opts.DataZoomOpts()],
