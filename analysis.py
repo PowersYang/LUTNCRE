@@ -28,9 +28,11 @@ class Analysis():
             subject = self.df[self.df['cj'] >= 60].groupby('subject').count()['cj'] / \
                       self.df.groupby('subject').count()['cj']
 
-            subject_dict = {'14': '二级C语言', '15': '二级JAva', '16': '三级网络技术', '24': '一级Office', '26': 'a', '28': 'b',
-                            '29': 'c', '35': 'd', '36': 'e', '38': 'f', '39': 'g', '41': 'h', '42': 'i', '44': 'g',
-                            '45': 'k', '61': 'l', '63': 'm', '64': 'n', '65': 'o'}
+            subject_dict = {'14': '二级C语言', '15': '二级JAva', '16': '三级网络技术', '24': '一级Office', '26': 'VB语言程序设计',
+                            '28': 'Java语言程序设计', '29': 'Access数据库程序设计', '35': '网络技术', '36': '数据库技术',
+                            '38': '信息安全技术', '39': '嵌入式系统开发技术', '41': '网络工程师', '42': '数据库工程师',
+                            '44': '信息安全工程师', '45': '嵌入式系统开发工程师', '61': 'C++语言程序设计', '63': 'MySQL数据库程序设计',
+                            '64': 'Web程序设计', '65': 'MS Office', '66': 'Python语言程序设计'}
             subject.rename(subject_dict, inplace=True)
             subject = subject.dropna()
 

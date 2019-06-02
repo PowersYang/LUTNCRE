@@ -25,13 +25,17 @@ def pass_rate_bar(date=None, data=None, width=None, height=None, reverse=False, 
     )
 
     if reverse:
-        c.reversal_axis().set_global_opts(toolbox_opts=opts.ToolboxOpts(orient='vertical', pos_left='right'), 
-            legend_opts=opts.LegendOpts(is_show=False),)
-        
+        c.reversal_axis().set_global_opts(toolbox_opts=opts.ToolboxOpts(orient='vertical', pos_left='right'),
+                                          legend_opts=opts.LegendOpts(is_show=False),
+                                          yaxis_opts=opts.AxisOpts(
+                                              axislabel_opts=opts.LabelOpts(font_size=6, rotate=yrorate,
+                                                                            color="#ffffff"),
+                                              axisline_opts=opts.AxisLineOpts(
+                                                  linestyle_opts=opts.LineStyleOpts(color="#ffffff"))))
 
     if datazoom:
         c.set_global_opts(datazoom_opts=[opts.DataZoomOpts(type_='inside'), opts.DataZoomOpts()],
-                          legend_opts=opts.LegendOpts(is_show=False),toolbox_opts=opts.ToolboxOpts(pos_left='right'))
+                          legend_opts=opts.LegendOpts(is_show=False), toolbox_opts=opts.ToolboxOpts(pos_left='right'))
 
     return c
 
@@ -48,7 +52,7 @@ def geo_effectscatter(data, width, height) -> Geo:
                  type_=ChartType.EFFECT_SCATTER,
                  effect_opts=opts.EffectOpts(scale=1000), color="#d0f551")
             .set_series_opts(label_opts=opts.LabelOpts(is_show=False))
-            .set_global_opts(legend_opts=opts.LegendOpts(is_show=False),toolbox_opts=opts.ToolboxOpts(pos_left='70%'))
+            .set_global_opts(legend_opts=opts.LegendOpts(is_show=False), toolbox_opts=opts.ToolboxOpts(pos_left='70%'))
     )
     return c
 
@@ -81,7 +85,8 @@ def pie_rich_label(data, width, height) -> Pie:
 
         )
             .set_series_opts(label_opts=opts.LabelOpts(formatter="{b}: {c}"))
-            .set_global_opts(legend_opts=opts.LegendOpts(is_show=False),toolbox_opts=opts.ToolboxOpts(orient='vertical', pos_left='right'))
+            .set_global_opts(legend_opts=opts.LegendOpts(is_show=False),
+                             toolbox_opts=opts.ToolboxOpts(orient='vertical', pos_left='right'))
 
     )
     return c
